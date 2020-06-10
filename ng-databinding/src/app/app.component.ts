@@ -1,59 +1,28 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-/**
- * Interpolation
- */
 
-//controller
+
+
 @Component({
-  selector : 'app-root', //custom element name
-  templateUrl:'app.component.html', //template---view,
-  // styles :[`
-  //   p {
-  //     color:DodgerBlue
-  //   }
-  
-  // `]
-  styleUrls :['app.component.css']
-
+    selector: 'app-root',
+    templateUrl:'app.component.html'
 })
 export class AppComponent{
-  
-  //data
-   title:string='IBM -Angular Application'
-   name:string = 'Subramanian'
-   age:number =39;
-   isActive:boolean = true;
 
-   //profile property vlaue
-   screenName:string = 'New Profile Screen'
+    name:string = 'foo'
+    message:string = "Hello"
+    city:string = "coimbatore"
 
-   //objects //todo object
-   todo = {
-    userId: 1,
-    id: 1,
-    title: "delectus aut autem",
-    completed: false
-  }
+    //listener method
+    onSave(){
+        alert('Save is called!');
+    }
+    onUpdate(e:any){
+        console.log(e.target.value);
+      //update the name variable
+      this.name =e.target.value
+    }
 
-  //address
-  address = {
-    city:'Coimbatore'
-  };
-
-  //image Url
-  imageUrl:string="../assets/c0494701.png";
-
-  //enable and disable
-  isEnabled = false;
-
-  //dynamic css
-  //apply center class
-  centerCondition:boolean = false;
-
-  //dynamic style
-  isEligible:boolean= true;
    
 
 }
-

@@ -879,5 +879,151 @@ Attribute Binding:
 CSS :  Style,class,dynamic styles using[]
 
 
+types of css
+1.inline style
+  <style>
+  </style>
+2.external style 
+ <link> - myapp.css
+
+thrid party style frameworks
+
+1.bootstrap
+
+steps:
+
+1.npm install bootstrap
+
+2.update angular.json
+  styles["./node_modules/bootstrap/dist/css/bootstrap.css"],
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+                                 css
+				  |
+			-----------------------
+			External           inline
+	bootstrap.css   class              style		
+
+<div class="container">
+<h1 style="color:red">{{title}}</h1>
+
+Angular provides three types of style sheets:
+
+Gobal style
+  -styles.css file
+  -bootstrap.css file
+in style 
+  style
+component specific style
+ -can be represented styles for a particular component only.
+*******************************************************************************************
+
+Property binding and css: dynamic style
+........................................
+
+class="container"
+style="color:red"
+
+ These styles are called static, once it applied cant be changed during rendering.
+
+
+how to change style dynamically or how to apply new style dynamically.
+
+<h1 [style.stylename]="booleancondition ? value1:value2">
+<h2 [class.classname]="booleancondition">  
+ 
+  if booleancondition is true, then style will be applied else wont be applied
+
+********************************************************************************************
+
+Event binding:
+
+js is event driven pl.
+
+types of events
+1.keyboard
+2.mouse events
+3.touch events
+
+(nameoftheEvent) ==>click
+
+  <button (click)="listerner()" class="btn btn-success">Click</button>
+
+If you read input, that input i want to show in screen
+  read input:
+
+Event is object, which is injected into lisnter function automatically.
+
+In Angular how to get event Object?
+Angular provides a special built in variable "$event" 
+$event variable has "Event Object" 
+
+<hr>
+   <h3>Name : {{name}}</h3>
+  <input  class="form-control" (input)="onUpdate($event)" type="text" placeholder="type something">
+
+export class AppComponent{
+
+    name:string = 'foo'
+
+    //listener method
+    onSave(){
+        alert('Save is called!');
+    }
+    onUpdate(e:any){
+        console.log(e.target.value);
+      //update the name variable
+      this.name =e.target.value
+    }
+
+}
+
+Two way data binding:
+....................
+
+If any changes happens on "instancevariable" which is bound on UI,gets updated because of
+events.
+Angular re render the screen for every update.
+
+User-----trigger--(Input)------>Listener is called--->|update the variable---When ever the
+variable is updated--->UI is rerendered.
+
+
+View -----Controller----View
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Code refactoring: 
+1   <input  class="form-control" (input)="message=$event.target.value"   type="text" [value]="message">
+
+2.event+property  [(ngModel)]
+ -ngModel
+     is Built in "DTO" object used to transfer data between view and controller.
+  <h2>City : {{city}}</h2>
+ <input  class="form-control" [(ngModel)]="city"  >
+
+Note; if you get the below error: ngModel is object, which is not availble right now.
+
+src/app/app.component.html:15:31 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+Solution:
+ngModel is part of "@angular/forms" "FormsModule", which must be injected into app.module.ts
+
+import {FormsModule} from '@angular/forms';
+
+@NgModule({
+  //di list: ng wil lookup this list , and create objects and link accordingly
+  declarations:[AppComponent,ProfileComponent],
+  imports : [BrowserModule ,FormsModule],
+  providers: [],
+  ///entry point
+  bootstrap: [AppComponent]
+
+})
+export class AppModule{}
+............................................................................................
+[(ngModel)] : banana in a box notation : WHich is for two way data binding shortcut.
+............................................................................................
+
 
 
