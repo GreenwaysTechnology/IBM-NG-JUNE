@@ -1345,6 +1345,186 @@ DOM Manipulation in angular patterns:
 3.Template Reference Variable : #
 
 
+Template Reference variable: #
+
+ To access dom objects inside /across templates.
+
+
+ <div>
+         <h1>Name : {{firstname}}</h1>
+      <input #name  placeholder="Please Enter Your Name" >
+
+     <button class="btn btn-success" (click)="setName(name.value)">Get Value From Template</button>
+    </div>
+export class AppComponent{
+    color:string = 'red'
+    firstname:string ='Default'
+
+    public setName(name:string){
+       this.firstname = name;
+    }
+}
+********************************************************************************************
+Pipe:
+Every applicationn starts out with what seems like a simple task: get data,transform them
+and show them to users.
+
+How to transform the data and show ?
+
+Eg;
+ if you get currency values, i want to show in ui with currency symbols.
+
+Pipes can help to solve this kind of issues
+
+Angular provides lot of built in pipes, you can write your own pipes as well.
+....
+Syntax:
+  some data | nameof the pipe.
+
+Date Formating:
+
+today:any = new Date();
+
+<h3>Today {{today | date }}</h3>
+
+What if i want to customize date according our need?
+
+ dd/mm/yyy - format
+
+Pipes can take input
+
+ {{expression | pipe:input}}
+
+
+Pipe Chaning:
+
+ the output of one pipe can be passed to another 
+
+  {{expression | pipe1 | pipe2 ....}}
+
+
+<div class="container">
+    <h1>Pipes Example</h1>
+    <h2>Date</h2>
+    <h3>Today {{today | date }}</h3>
+    <h3>Today {{today | date:'dd/MM/yyyy' }}</h3>
+    <h3>Some Date {{someDay | date:'short'}}</h3>
+    <hr>
+    <h2>Currency</h2>
+    <h3>Today Stock Value {{stockValue | currency}}</h3>
+    <h3>Today Stock Value {{stockValue | currency:'INR'}}</h3>
+
+    <h3>Strings</h3>
+    <h3>Name {{name | uppercase}}</h3>
+    <h3>Chaining</h3>
+    <h3>Today {{today | date | uppercase }}</h3>
+
+
+</div>
+
+import { Component } from '@angular/core';
+
+
+
+@Component({
+    selector :'app-root',
+    templateUrl: 'app.component.html'
+})
+export class AppComponent{
+
+    //date data
+    today:any = new Date();
+    someDay:any = new Date(1999,6,10);
+
+    //currency data
+    stockValue:number =100.7863;
+
+    //strings
+    name:string = 'subramanian';
+
+}
+********************************************************************************************
+
+What if, the pipe which is not enough from the built in:
+
+Custom Pipe
+
+Pipe is also one the object in angular.
+
+
+
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+
+
+@Pipe({
+    name:'decimalFraction'
+})
+export class DecimalFractionPipe implements PipeTransform{
+  
+    transform(value:number,digit:number=2){
+        //10.789445454  => 10.79
+         return value.toFixed(digit);
+    }
+
+}
+
+<div class="container">
+    <h1>Pipes Example</h1>
+    <h2>Date</h2>
+    <h3>Today {{today | date }}</h3>
+    <h3>Today {{today | date:'dd/MM/yyyy' }}</h3>
+    <h3>Some Date {{someDay | date:'short'}}</h3>
+    <hr>
+    <h2>Currency</h2>
+    <h3>Today Stock Value {{stockValue | currency}}</h3>
+    <h3>Today Stock Value {{stockValue | currency:'INR'}}</h3>
+
+    <h3>Strings</h3>
+    <h3>Name {{name | uppercase}}</h3>
+    <h3>Chaining</h3>
+    <h3>Today {{today | date | uppercase }}</h3>
+
+    <h2>JSON pipe (Note : Which only for Development)</h2>
+    <pre>
+        {{user | json }}
+    </pre>
+    <hr>
+    <h1>Custom Pipe :Decimal Fraction</h1>
+    <h2>Stock Value {{10.7898777 | decimalFraction:3 }}</h2>
+
+
+</div>
+import { NgModule } from '@angular/core';
+//import { AppComponent ,ParentComponent,ChildComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ProfileComponent } from './profile.component';
+import {FormsModule} from '@angular/forms';
+import { AppComponent } from './app.component';
+import {HighLightDirective} from './directives/app.highlight.directive';
+import {DecimalFractionPipe} from './pipes/app.decimalfraction';
+
+
+
+@NgModule({
+  //di list: ng wil lookup this list , and create objects and link accordingly
+  //declarations:[AppComponent,ProfileComponent,ParentComponent,ChildComponent],
+  declarations : [AppComponent,HighLightDirective,DecimalFractionPipe],
+  imports : [BrowserModule ,FormsModule],
+  providers: [],
+  ///entry point
+  bootstrap: [AppComponent]
+
+})
+export class AppModule{}
+
+
+
+
+
+
+
 
 
 

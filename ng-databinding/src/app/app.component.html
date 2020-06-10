@@ -1,15 +1,26 @@
 <div class="container">
-   <h1>Attribute Directive</h1>
-   <!--Attribute directive-->
-    <h2 appHighlight [highlightColor]="color">High light me</h2>
+    <h1>Pipes Example</h1>
+    <h2>Date</h2>
+    <h3>Today {{today | date }}</h3>
+    <h3>Today {{today | date:'dd/MM/yyyy' }}</h3>
+    <h3>Some Date {{someDay | date:'short'}}</h3>
+    <hr>
+    <h2>Currency</h2>
+    <h3>Today Stock Value {{stockValue | currency}}</h3>
+    <h3>Today Stock Value {{stockValue | currency:'INR'}}</h3>
 
-    <h1>Template Reference variable</h1>
-  
-     <!--Refer the input box : Get input box value-->
-     <div>
-         <h1>Name : {{firstname}}</h1>
-      <input #name  placeholder="Please Enter Your Name" >
+    <h3>Strings</h3>
+    <h3>Name {{name | uppercase}}</h3>
+    <h3>Chaining</h3>
+    <h3>Today {{today | date | uppercase }}</h3>
 
-     <button class="btn btn-success" (click)="setName(name.value)">Get Value From Template</button>
-    </div>
+    <h2>JSON pipe (Note : Which only for Development)</h2>
+    <pre>
+        {{user | json }}
+    </pre>
+    <hr>
+    <h1>Custom Pipe :Decimal Fraction</h1>
+    <h2>Stock Value {{10.7898777 | decimalFraction:3 }}</h2>
+
+
 </div>

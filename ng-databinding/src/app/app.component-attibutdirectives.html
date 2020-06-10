@@ -1,0 +1,15 @@
+<div class="container">
+   <h1>Attribute Directive</h1>
+   <!--Attribute directive-->
+    <h2 appHighlight [highlightColor]="color">High light me</h2>
+
+    <h1>Template Reference variable</h1>
+  
+     <!--Refer the input box : Get input box value-->
+     <div>
+         <h1>Name : {{firstname}}</h1>
+      <input #name  placeholder="Please Enter Your Name" >
+
+     <button class="btn btn-success" (click)="setName(name.value)">Get Value From Template</button>
+    </div>
+</div>
