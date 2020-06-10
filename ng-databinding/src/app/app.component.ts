@@ -7,7 +7,15 @@ import { Component } from "@angular/core";
 //controller
 @Component({
   selector : 'app-root', //custom element name
-  templateUrl:'app.component.html' //template---view
+  templateUrl:'app.component.html', //template---view,
+  // styles :[`
+  //   p {
+  //     color:DodgerBlue
+  //   }
+  
+  // `]
+  styleUrls :['app.component.css']
+
 })
 export class AppComponent{
   
