@@ -1,0 +1,51 @@
+
+<div>
+  <h1>{{title}}</h1>
+  <h2>Data Binding : Interplotion</h2>
+   <div>
+     <p>String {{name}}</p>
+     <p>Number {{age}}</p>
+     <p>Boolean {{isActive ? "Active" : "InActive"}}</p>
+     <p>Object</p>
+     <p>Id {{todo.userId}}</p>
+     <p>Title {{todo.title}}</p>
+     <p>Completed {{todo.completed}}</p>
+   </div>
+   <div>
+     <h1>Profile Component Integration</h1>
+      <app-profile 
+      [title]="'IBM Profile Page'"  >
+      </app-profile>
+
+      <app-profile 
+      [screen]="'Profile List'">
+      </app-profile>
+
+      <app-profile 
+      [screen]="screenName">
+      </app-profile>
+      <!--Object passing-->
+      <app-profile [address]="address">
+      </app-profile>
+
+   </div>
+   <div>
+      <h1>Attribute Binding</h1>
+      <!--Hardcoded image-->
+      <img src="../assets/c0494701.png"/>
+      <!--image through interpolation : it is not recommended-->
+      <img src="{{imageUrl}}"/>
+
+      <!--Image through property binding: attribute binding-->
+      <img [src]="imageUrl"/>
+
+      <div>
+        <!--disabled is boolean attribute and its value is true by default-->
+      <button [disabled]="isEnabled">Save</button>
+      <!--dom attributes , can be changed dynamically using []-->
+      <span [innerHTML]="'inner Value'"></span>
+     </div>
+   </div>
+    
+
+</div>

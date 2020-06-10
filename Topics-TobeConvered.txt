@@ -1,0 +1,116 @@
+
+Typescript:
+ typesytem
+ object oriented programming
+ class
+ objects
+ encapsulation
+ generics
+ arrays
+ decorators
+ es6modules
+
+Angular Architecture
+ 	Architecture Overview
+ 	Modules
+ 	Components
+ 	Meta Data
+ 	Data binding
+ 	Directives
+ 	Services
+ 	Dependency Injection
+
+Template and Data binding
+ 	Displaying Data
+ 	Template Syntax
+ 	Component Interaction
+ 	Types of binding
+ 	Interpolation
+ 	Template expressions
+ 	Two way data binding
+ 	Property Binding
+ 	Event Binding
+ 	class Binding
+ 	Style Binding
+
+Modules,DI
+ 	Angular Modularity
+ 	Dependency Injection in Angular
+ 	The root App Module
+ 	NG Module
+ 	Shared Modules
+ 	Dependency Injection
+ 	Built in Modules Overview
+ 	Forms Module ,HttpClient Modules
+
+Directives
+ 	Built in Directives
+ 	Custom Directives
+ 	Host Listener & Host Binding
+ 	Inputs & Configuration
+Pipes
+ 	Pipes and Data filtering
+ 	Built-in Pipes
+ 	Async Pipe
+ 	Custom Pipes
+ 	Chaining Pipes
+
+Forms
+ 	Overview
+ 	Model Driven Forms
+ 	Model Driven Form Validation
+ 	Submitting & Resetting
+ 	Template Driven Forms
+
+Services and Reactive Programming with RxJS
+ 	What is Service
+ 	Service is Just Plain Type Script class
+ 	@Injectable
+ 	Types of Services
+ 	Syn Services
+ 	Async Services
+ 	Custom Services
+ 	Built in Services
+ 	Streams & Reactive Programming
+ 	Observables & RxJS
+ 	RxJS & Angular
+
+HTTP Client
+ 	Overview
+ 	HTTPClient Modules
+ 	Core HTTPClient API
+ 	Get
+ 	Post
+ 	Delete
+ 	HTTP Example with Promises
+ 	HTTP Example with Observables
+ 	Observer able Operators
+ 	Subscribe
+ 	Catch
+ 	Map
+ 	filter
+
+Routing
+ 	Overview
+ 	Route Configuration
+ 	Navigation
+ 	Parameterized Routes
+ 	Nested Routes
+ 	Router Guards
+ 	Routing Strategies
+ 	Lazy loading
+
+Ionic Angular && Cordova
+    Building Mobile applications
+    Layouts
+    Themes
+    Lifecyles
+    Storage
+    Navigation&&Routing
+    Platform service access using cordova
+
+
+
+
+  
+ 

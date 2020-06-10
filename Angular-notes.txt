@@ -1,0 +1,883 @@
+
+
+Angular :
+
+What is angular?
+ In nutshell angular is javascript mvc framework to build client side single page
+web applications.
+
+Angular is written using "Typescript","HTML","CSS".
+******************************************************************************************
+Angular prvoides platform and apis to build end to applications.
+
+****************************************************************************************
+
+Angular Tech stack:
+
+1.HTML 5
+2.CSS 3
+3.Typescript
+4.Reactive Programming : rxjs
+********************************
+5.Webpack : Automation
+ -dev
+ -testing
+ -production
+*************************
+6.StackBlitz
+7.NativeScript 
+
+****************************************************************************************
+
+Angular Framework Architecture:
+...............................
+
+Angular framework is collection of many projects.
+
+Each project is built by team of developers, and finally they coimbine as single product.
+
+
+How the project is represented?
+
+ Each project is represented with namespace.
+
+eg:
+    supercart /ibmsupercart -code name given the project
+      -namespace
+  
+ paymentgateway
+
+     ibmsupercart/paymentgateway - namespacing.
+
+in angular all projects are namespaced
+
+  @ibmsupercart/paymentgateway
+
+  @angular/core
+  @angular/cli
+  @angular/common
+  @angular/forms
+  @angular/common/http
+ etc....
+
+What is @angular? --@-->npm private package
+ 
+Types of angular framework packages
+
+1.angular/google team packages - @angular
+2.thrid party - rxjs
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Starts project : 
+
+@angular/cli Project:
+
+ 1.used to create project layouts
+ 2.used for code creations and automations
+cli project is powered with webpack.
+
+https://cli.angular.io/
+
+/////
+
+steps:
+npm install -g @angular/cli
+ng new my-dream-app
+cd my-dream-app
+ng serve
+
+> npm install @angular/cli --save-dev
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+Angular basic concepts:
+
+
+1.Angular objects
+2.Dependency Injection
+3.MVC
+3.Work flow
+4.Data Binding
+ 
+
+Angular is object oriented frame work:
+ in angular every thing is object
+
+
+
+Angular Application Architecture:
+.................................
+Application is built by using object oriented model =>Object
+System
+
+In OO Primary actors  are "Objects".
+
+Since angular is written in TS,TS is oo language, We build using objects.
+
+Angular is pure object oriented system.
+In Angular every thing object.
+
+Application is collection of objects and static assets
+
+Application itself object called container object.
+
+Application object in angular called as "Module".
+
+Objects in Angular:
+
+Types of Objects
+1.infra objects
+   ->which provides app infra structure.
+  Service -> Data and biz logic
+2.Domain Objects
+   ->To represent domain-Biz - Model
+ eg: Customer,Employee,Order,Invoice,Bill etc...
+
+Types of Infra Objects:
+......................
+1.Module
+   container object,which contains object
+2.Component
+   which represents GUI Elements
+3.Directive
+   which represents GUI Elements
+4.Service
+   Which represents data and biz logic
+5.Pipe
+  which supports GUI elements for formatting.
+
+
+Infra objects are created using constructor pattern
+  =>ES 6 class
+DOMain objects are created by using literal objects
+  ->plain literal , array
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+How objects are created? who is creating objects?
+
+
+class CurdRepository {
+      public save() {
+            console.log('Save method')
+      }
+      public findAll() {
+            console.log('Find All method')
+      }
+      public findById(id: number = 1) {
+            console.log('findById method')
+      }
+      public remove(id: number = 1) {
+            console.log('remove method')
+      }
+      public update(id: number = 1) {
+            console.log('update method')
+      }
+
+}
+class CustomerService {
+      //has-a relationship
+      constructor(private repository: CurdRepository) {
+      }
+      public save() {
+            this.repository.save();
+      }
+      public findAll() {
+            this.repository.findAll()
+      }
+      public findById(id: number = 1) {
+            this.repository.findById(1);
+      }
+      public remove(id: number = 1) {
+            this.repository.remove(id);
+      }
+      public update(id: number = 1) {
+            this.repository.update
+      }
+
+}
+
+//dependency injection
+//create repositort
+ let repository = new CurdRepository()
+
+//create service and then connect with repository.
+
+let service = new CustomerService(repository);
+service.save()
+
+imagine in realtime system, do you think that this possible?
+ -creating objects
+ -linking them in order
+
+
+It is not possible, then how to solve it?
+	https://martinfowler.com/articles/injection.html
+
+Inversion of Control Containers and the Dependency Injection pattern
+
+  ->Instead of developer creating and inject object through code, we will introduct
+ automation
+     "ioc containers"/
+
+Since ng is large object system, we need ioc, so ng provides built in ioc containers
+  -anguar di
+
+*****************************************************************************************
+
+Angular and MVC:
+
+Angular uses most popular web design pattern called m-model view- controller.
+
+View - GUI
+Controller -Object- Component
+Model --Object - biz objects-customer,order,invoice....
+
+*******************************************************************************************
+HTML:
+
+how html works:
+
+HTML-Markup language
+...................
+
+HTML(index.html)----Browser---read--compiled---image(tree)|runtime
+	tree--start allocating memory----->Linked List--->Tree
+
+ Stages of html                  
+   Within Browser Memory            Inside Javascript Engine
+       Tree-LinkedList(c) ---->     Object tree(DOM Tree)
+
+every html element is linked node inside browser.
+every html element inside js engine is object-dom
+.........................................................................................
+Note:
+
+ Every Element is Object
+ h1 ---Object
+ div ---Object
+ p ---Object
+ span ---Object
+
+What we are going to do?
+ we are going to mainipulates theses objects---DOM Programming.
+********************************************************************************************
+
+Custom Elements and attributes:
+
+ <h1>----feed to browser ---->Compiler verfies this element is ready made or not
+				|
+			    Yes
+			     ----starts creating node
+
+
+ <hello>----feed to browser----compiler
+				  |
+				 no 
+				   - error : unKnownelement--parsed as text
+
+After HTML5 , HTML5 Spec added new feature: custom elements
+
+ <hello>----feed to browser----compiler
+				  |
+				 no 
+				   - Attach javascript to treate this is special element
+
+Angular uses custom elements every where?
+
+
+
+
+HTML 5
+  ->CUSTOM ELEMENTS
+   ->you can have your own html element,teach browser how to render it?
+  <app-root> ---->js--->{ }
+
+How to teach the browser?
+   via js
+
+How you are going to do in angular?
+  ->create collection of custom elements
+
+ <app-grid>------>Angular Code---Component--->JS Code
+
+Application:
+
+         <app-grid>      | class GridComponent{}
+                         |
+                         |
+
+Angular is all about custom tags(html) with behaviour(js).
+
+html is tree mode
+  
+  <body> -parent
+      <div>  -child
+	 <div> -child
+	     <h1>Hello</h>
+             <p>hai</p> 
+	 </div>
+      </div>
+
+each element or collection of elements represent by objects
+ if you combine all objects in order---> tree
+	=>Object tree=>Component Tree
+
+In html you can have only one body element(root).
+Similar rule in angular you can have only one root element
+  =>app-root
+	->
+ this app-root element must be inside body element by default.
+
+Custom elements must have naming convention called "keb case /dash case" notation
+<app-header>
+
+Work flow:
+
+ 1.open browser
+ 2.lanuch index.html
+  <body>
+        <app-root></app-root>
+  </body>
+
+ 3.start angular process
+  Angular is 100% modular framework
+  ->main.js==>main.ts
+	------>app.module.js --app.module.ts
+		 --->app.component.js -->app.component.ts
+				-><app-root> -Result
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+Modularity:
+types of modularity
+
+1.ES 6 modularity -> code distribution - source code organization.
+ export,import,export default : files organizati
+
+2.Angular modularity
+	->Runtime object organization
+Angular Modules are used to organize the runtime objects
+
+*********************************************************************************************
+
+Remember: angular is di framework, decorator driven,object oriented,every thing is object.
+
+each object is differiented by decorators
+
+Note: If you have any infra object->class-->decorate
+
+Every infra object is decorated by a decorator
+
+Module,SubModule ->@NgModule
+Component -@Component
+Directive -@Directive
+Pipe->@Pipe
+Service ->@Injectable
+
+Component:
+Component:Terminally ,coined by MS 1989
+  Resuable object, in General which represent GUI
+ like Button,textbox,label
+
+->Component plays vital role
+  ->Component can act as controller in MVC
+
+Controller:
+  ->VIEW
+  ->Model
+
+View :
+  Runtime representation of USER INTERFACE Elements
+Template: Design Time
+  html + angular markup =>View(HTML) -BY Tag -custom
+
+Component======>Custom tag
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+Every decorator takes parameter:
+
+ 1.which is object ,we call "Decorator meta data"
+
+
+
+steps to create Component
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'ng-databinding';
+}
+
+types of template:
+1.inline  ; part of component definition itself
+2.external template : template written outside
+
+
+
+common errors:
+
+1.element not closed
+
+Errors parsing template: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags ("
+      <div>
+         <h1>IBM Angular Application
+      [ERROR ->]</div>
+  `
+})
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+MVC :
+
+C : Controller - Component : every cop controller
+V : View : template
+M : Model: data --can be primitives,objects, arrays
+
+Data binding:
+
+ Transfering data from C---V and V--C
+
+Types of data binding:
+
+1.interpolation
+
+2.Type of binding
+property 
+
+Target : on which binding , can be enabled
+
+Element
+<img [src]="heroImageUrl">
+Component property
+<app-hero-detail [hero]="currentHero"></app-hero-detail>
+Directive 
+<div [ngClass]="{'special': isSpecial}"></div>
+
+3.Type of binding
+Event
+
+Target:
+Element event
+<button (click)="onSave()">Save</button>
+Component event
+<app-hero-detail (deleteRequest)="deleteHero()"></app-hero-detail>
+Directive event
+<div (myClick)="clicked=$event" clickable>click me</div>
+
+4.Two-way	
+Event and property	
+
+Target
+Event and property	
+<input [(ngModel)]="name">
+
+
+5.Attribute	
+Attribute (the exception)
+
+Target
+<button [attr.aria-label]="help">help</button>
+
+
+6.Class	
+class property
+
+Target
+<div [class.special]="isSpecial">Special</div>
+
+7.Style
+style property	
+<button [style.color]="isSpecial ? 'red' : 'green'">
+
+*******************************************************************************************
+
+1.interpolation : model binding
+
+primitive
+
+name:string='xxxx'
+
+{{variable}}
+
+objects
+
+import { Component } from "@angular/core";
+
+/**
+ * Interpolation
+ */
+
+//controller
+@Component({
+  selector : 'app-root', //custom element name
+  templateUrl:'app.component.html' //template---view
+})
+export class AppComponent{
+  
+  //data
+   title:string='IBM -Angular Application'
+   name:string = 'Subramanian'
+   age:number =39;
+   isActive:boolean = true;
+
+   //objects //todo object
+   todo = {
+    userId: 1,
+    id: 1,
+    title: "delectus aut autem",
+    completed: false
+  }
+   
+
+}
+
+<div>
+  <h1>{{title}}</h1>
+  <h2>Data Binding : Interplotion</h2>
+   <div>
+     <p>String {{name}}</p>
+     <p>Number {{age}}</p>
+     <p>Boolean {{isActive ? "Active" : "InActive"}}</p>
+     <p>Object</p>
+     <p>Id {{todo.userId}}</p>
+     <p>Title {{todo.title}}</p>
+     <p>Completed {{todo.completed}}</p>
+
+   </div>
+
+</div>
+********************************************************************************************
+Component tree /Object Tree:
+...........................
+
+How to create diffent components can be created?
+
+How to link component links
+
+
+Any object , if you want create 
+
+create class 
+ profile.component.ts
+declare class
+export
+decorate it
+link components - inside app
+di
+
+import { Component } from "@angular/core";
+
+
+@Component({
+    selector :'app-profile',
+    template : `
+       <h1>Profile Page</h1>
+    `
+})
+export class ProfileComponent{
+
+}
+
+common  errors:
+src/app/app.component.html:16:7 - error NG8001: 'app-profile' is not a known element:
+1. If 'app-profile' is an Angular component, then verify that it is part of this module.
+2. If 'app-profile' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+16       <app-profile></app-profile>
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/app.component.ts:10:15
+    10   templateUrl:'app.component.html' //template---view
+                     ~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AppComponent.
+
+
+ProfileComponent object created
+
+*****************************************************************************************
+
+Dependency Injection: anguar creates objects and links the objects:
+
+but we need to tell the angular to create those objects
+
+DI Configuration:
+...................
+
+app.module.ts :  container object where we define the object dependency
+
+classification of objects for di:
+.................................
+
+1.view objects
+ @Component,
+ @Directive,
+ @Pipe
+2.service objects
+ @Injectable
+
+3.module objects
+@NgModule
+
+
+Module object:
+
+Organize the objects 
+
+Every Application must have one single root container object: app.module.ts
+
+How to create Module Object
+
+1.create file
+2.declare class
+3.decorate with @NgModule
+
+main(Root) / submodlule is decorated @NgModule only
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+in submodules "bootstrap" property wont be there.
+
+declartions : all view objects-
+ @Component,
+ @Directive,
+ @Pipe
+
+imports : all submodules
+@NgModule
+
+providers:all service classes
+@Injectable
+
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ProfileComponent } from './profile.component';
+
+
+@NgModule({
+  //di list: ng wil lookup this list , and create objects and link accordingly
+  declarations:[AppComponent,ProfileComponent],
+  imports : [BrowserModule],
+  providers: [],
+  ///entry point
+  bootstrap: [AppComponent]
+
+})
+export class AppModule{}
+
+
+<div>
+  <h1>{{title}}</h1>
+  <h2>Data Binding : Interplotion</h2>
+   <div>
+     <p>String {{name}}</p>
+     <p>Number {{age}}</p>
+     <p>Boolean {{isActive ? "Active" : "InActive"}}</p>
+     <p>Object</p>
+     <p>Id {{todo.userId}}</p>
+     <p>Title {{todo.title}}</p>
+     <p>Completed {{todo.completed}}</p>
+   </div>
+   <div>
+     <h1>Profile Component Integration</h1>
+      <app-profile></app-profile>
+   </div>
+    
+
+</div>
+
+import { Component } from "@angular/core";
+
+
+@Component({
+    selector :'app-profile',
+    template : `
+       <h1>Profile Page</h1>
+    `
+})
+export class ProfileComponent{
+
+}
+
+
+2.Property binding:
+
+property : attribute
+
+       attribute
+        |
+ <div style="color:red">
+
+custom attribute generally proprety.
+
+[property] -symbol
+
+How to pass data from parent component to child compoent?
+      
+
+<app-profile [propName]=propvalue ></app-profile>
+
+propName = propValue
+
+propValue can be any thing(primitive,object,array)
+
+propValue must be given inside ""
+
+incase if you pass hardcoded string "''"
+
+if you want to read prop inside component.
+
+you have basic idea:
+
+propname inside component and prop name inside is same
+title  =========>title
+
+
+
+
+<div>
+  <h1>{{title}}</h1>
+  <h2>Data Binding : Interplotion</h2>
+   <div>
+     <p>String {{name}}</p>
+     <p>Number {{age}}</p>
+     <p>Boolean {{isActive ? "Active" : "InActive"}}</p>
+     <p>Object</p>
+     <p>Id {{todo.userId}}</p>
+     <p>Title {{todo.title}}</p>
+     <p>Completed {{todo.completed}}</p>
+   </div>
+   <div>
+     <h1>Profile Component Integration</h1>
+      <app-profile 
+      [title]="'IBM Profile Page'"  >
+      </app-profile>
+
+      <app-profile 
+      [screen]="'Profile List'">
+      </app-profile>
+
+      <app-profile 
+      [screen]="screenName">
+      </app-profile>
+   </div>
+    
+
+</div>
+
+
+import { Component } from "@angular/core";
+
+/**
+ * Interpolation
+ */
+
+//controller
+@Component({
+  selector : 'app-root', //custom element name
+  templateUrl:'app.component.html' //template---view
+})
+export class AppComponent{
+  
+  //data
+   title:string='IBM -Angular Application'
+   name:string = 'Subramanian'
+   age:number =39;
+   isActive:boolean = true;
+
+   //profile property vlaue
+   screenName:string = 'New Profile Screen'
+
+   //objects //todo object
+   todo = {
+    userId: 1,
+    id: 1,
+    title: "delectus aut autem",
+    completed: false
+  }
+   
+
+}
+
+
+
+
+import { Component, Input } from "@angular/core";
+
+
+@Component({
+    selector :'app-profile',
+    template : `
+       <h1>{{title}}</h1>
+       <h2>{{mytitle}}</h2>
+    `
+})
+export class ProfileComponent{
+
+    @Input()
+    title:string;
+    @Input('screen')
+    mytitle:string;
+
+
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+HTML Elements and attributes:
+.............................
+
+all static assets : images,docs,json files , must be kept inside assets folder
+
+Attribute Binding:
+
+<img src="imageUrl">
+
+
+<div>
+      <h1>Attribute Binding</h1>
+      <!--Hardcoded image-->
+      <img src="../assets/c0494701.png"/>
+      <!--image through interpolation : it is not recommended-->
+      <img src="{{imageUrl}}"/>
+
+      <!--Image through property binding: attribute binding-->
+      <img [src]="imageUrl"/>
+
+      <div>
+        <!--disabled is boolean attribute and its value is true by default-->
+      <button [disabled]="isEnabled">Save</button>
+      <!--dom attributes , can be changed dynamically using []-->
+      <span [innerHTML]="'inner Value'"></span>
+     </div>
+   </div>
+
+*********************************************************************************************
+
+CSS :  Style,class,dynamic styles using[]
+
+
+
+
