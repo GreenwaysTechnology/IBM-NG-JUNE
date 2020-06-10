@@ -46,6 +46,13 @@ export class AppComponent{
 
   //enable and disable
   isEnabled = false;
+
+  //dynamic css
+  //apply center class
+  centerCondition:boolean = false;
+
+  //dynamic style
+  isEligible:boolean= true;
    
 
 }

@@ -1,4 +1,10 @@
 p {
     color:DodgerBlue;
     background-color: lightblue;
+    font-size: 40px;
+  }
+
+  .center {
+    text-align: center;
+    color: red;
   }

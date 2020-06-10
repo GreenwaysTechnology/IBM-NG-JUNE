@@ -2,9 +2,9 @@
 <div class="container">
   <h1 style="color:red">{{title}}</h1>
   <h2>Data Binding : Interplotion</h2>
-   <div>
-     <p>String {{name}}</p>
-     <p>Number {{age}}</p>
+   <div >
+     <p [class.center]="centerCondition">String {{name}}</p>
+     <p [style.color]="isEligible ? 'green' : 'red' " >Number {{age}}</p>
      <p>Boolean {{isActive ? "Active" : "InActive"}}</p>
      <p>Object</p>
      <p>Id {{todo.userId}}</p>
