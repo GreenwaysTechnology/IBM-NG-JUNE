@@ -1,21 +1,18 @@
-<div class="container">
-  <h1>Event Binding Application</h1>
-  <!--Add Button attach event-->
-  <button (click)="onSave()" class="btn btn-success">save</button>
-  <hr>
-   <h3>Name : {{name}}</h3>
-  <input  class="form-control" (input)="onUpdate($event)" type="text" placeholder="type something">
-  <!--Code Refactoring with respect to Events-->
-  <!--Dynamic-->
-  <hr>
-   <h2>Message : {{message}}</h2>
-  <input  class="form-control" (input)="message=$event.target.value"   type="text" [value]="message">
-  <hr>
-  <h2>City : {{city}}</h2>
- <input  class="form-control" [(ngModel)]="city" >
- <h1>Custom Events</h1>
-  <app-parent></app-parent>
-  <hr>
-  
+ <div class="container">
+    <h1>List Rendering : Structural Directives</h1>
+    <hr>
+    <h3>Number List</h3>
+    <ul>
+       <li *ngFor="let item of numList">
+            {{item}}
+       </li>
+    </ul>
+    <hr>
+    <h2>User List</h2>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let user of users">
+           <span class="badge badge-primary">{{user.id}}  </span> <span>{{user.name}}</span>
+       </li>
+    </ul>
 
-</div>
+ </div>

@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Event Binding Application</h1>
+  <!--Add Button attach event-->
+  <button (click)="onSave()" class="btn btn-success">save</button>
+  <hr>
+   <h3>Name : {{name}}</h3>
+  <input  class="form-control" (input)="onUpdate($event)" type="text" placeholder="type something">
+  <!--Code Refactoring with respect to Events-->
+  <!--Dynamic-->
+  <hr>
+   <h2>Message : {{message}}</h2>
+  <input  class="form-control" (input)="message=$event.target.value"   type="text" [value]="message">
+  <hr>
+  <h2>City : {{city}}</h2>
+ <input  class="form-control" [(ngModel)]="city" >
+ <h1>Custom Events</h1>
+  <app-parent></app-parent>
+  <hr>
+  
+
+</div>

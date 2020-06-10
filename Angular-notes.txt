@@ -1050,8 +1050,52 @@ We need to write two components
 2.Child Component
 
 
+Use case : if child component clicks button, ---Listener is called---Inside Listerner
+ --Write code to send data To parent.
+
+                            Parent <---EventEmitter<---Child
+**********************************************************************************************
+
+Directives:
+
+ Directive is custom element / attribute..
 
 
+1.Template directive
+   The directive with Template ; all components create template directive
+  <app-root>
+  <app-profile>
+
+@Component is decorator which inherits @Directive
+
+2.Structural directive
+
+  It is one of the "special attribute" directive
+  All structural directive starts with "*" notation.
+
+Why structural directive?
+->change the DOM Layout by adding and removing dom elements : Dom manulation.
+
+Common structural directives
+1.*ngFor : for loop
+2.*ngIf  : if condition
+3.*ngSwitch : switch
+
+
+List /Array rendering:
+.......................
+
+Layouts:
+1.List view Layout
+   -ul li
+2.Card View Layout
+  div
+3.Grid View Layout
+  table tr td
+
+
+
+3.Attribute directive
 
 
 
