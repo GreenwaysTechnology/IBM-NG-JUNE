@@ -1083,7 +1083,7 @@ Common structural directives
 
 
 List /Array rendering:
-.......................
+......................
 
 Layouts:
 1.List view Layout
@@ -1093,6 +1093,113 @@ Layouts:
 3.Grid View Layout
   table tr td
 
+
+2.*ngIf  : if condition
+ 
+if you are implementing toggling .
+
+ add or remove dom element dynamically.
+
+Caution : dont add or remove elements dynamically which degrades performances.
+
+inside of that use "hidden" attribute
+
+if...else:
+..........
+ <h1>*ngIf</h1>
+     <button class="btn btn-success" (click)="toggle()">Toggle</button>
+     <!--Show and Hide-->
+     <div *ngIf="!isHidden">
+          <h1>Hello</h1>
+     </div>
+     <!--Show and Hide using hidden property :it is recommended-->
+     <div [hidden]="isHidden">
+        <h1>Hai</h1>
+     </div>
+     <button class="btn btn-success" (click)="toogleEnabled()">Toggle:Ifelse</button>
+    
+    <!--if else lader-->
+    <div *ngIf="isEnabled; else mycondition">
+        <h1>You have Facility!</h1>
+    </div>
+   <ng-template #mycondition>
+      <h1>Sorry! Facility is not availbale</h1>
+   </ng-template>
+
+# : template reference variable
+
+Component :
+ //ngIf
+    isHidden:boolean =false;
+    isEnabled:boolean = false;
+
+    toggle(){
+       this.isHidden  = !this.isHidden;
+    }
+   
+    toogleEnabled(){
+        this.isEnabled = !this.isEnabled;
+
+Progress bar:
+............
+   <h2>
+    <div *ngIf="loading; else notLoading  ">
+      <h2>{{status}}</h2>
+    </div>
+  </h2>
+  <ng-template #notLoading>
+    <div>
+      <h2>{{status}}</h2>
+    </div>
+  </ng-template>
+
+Component code:
+  //progress bar variables
+    loading:boolean = true;
+    status:string = 'Loading......'
+
+    constructor(){
+      //Progress bar time: using timer
+      setTimeout(()=>{
+        this.loading = !this.loading;
+        this.status = 'Finished'
+      },5000)
+
+    }
+
+switch....case:
+*ngSwitch
+
+<div [ngSwitch]="feedback">
+  <p *ngSwitchCase="'good'">Good</p>
+  <p *ngSwitchCase="'verygood'">Very Good</p>
+  <p *ngSwitchCase="'bad'">Bad</p>
+  <p *ngSwitchDefault>Your input is not matching</p>
+
+</div>
+<h1>Switch Case</h1>
+  <div [ngSwitch]="feedback">
+    <p *ngSwitchCase="'good'">Good</p>
+    <p *ngSwitchCase="'verygood'">Very Good</p>
+    <p *ngSwitchCase="'bad'">Bad</p>
+    <p *ngSwitchDefault>Your input is not matching</p>
+  </div>
+
+  <!--Switch case with ng-template-->
+  <div [ngSwitch]="feedback">
+    <ng-template [ngSwitchCase]="'good'">
+      <h3>Good</h3>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'verygood'">
+      <h3>Very Good</h3>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'bad'">
+      <h3>bad</h3>
+    </ng-template>
+    <ng-template ngSwitchDefault>
+      <h3>Your input is not matching</h3>
+    </ng-template>
+  </div>
 
 
 3.Attribute directive

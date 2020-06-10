@@ -11,8 +11,63 @@
     <h2>User List</h2>
     <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let user of users">
-           <span class="badge badge-primary">{{user.id}}  </span> <span>{{user.name}}</span>
+           <span class="badge badge-primary">{{user.id}}</span> 
+           <span>{{user.name}}</span>
        </li>
     </ul>
+    <hr>
+    <h1>*ngIf</h1>
+     <button class="btn btn-success" (click)="toggle()">Toggle</button>
+     <!--Show and Hide-->
+     <div *ngIf="!isHidden">
+          <h1>Hello</h1>
+     </div>
+     <!--Show and Hide using hidden property :it is recommended-->
+     <div [hidden]="isHidden">
+        <h1>Hai</h1>
+     </div>
+     <button class="btn btn-success" (click)="toogleEnabled()">Toggle:Ifelse</button>
+    
+    <!--if else lader-->
+    <div *ngIf="isEnabled; else mycondition">
+        <h1>You have Facility!</h1>
+    </div>
+   <ng-template #mycondition>
+      <h1>Sorry! Facility is not availbale</h1>
+   </ng-template>
+   <!--Progressbar Simulation-->
+   <h2>
+    <div *ngIf="loading; else notLoading  ">
+      <h2>{{status}}</h2>
+    </div>
+  </h2>
+  <ng-template #notLoading>
+    <div>
+      <h2>{{status}}</h2>
+    </div>
+  </ng-template>
+  <hr>
+  <h1>Switch Case</h1>
+  <div [ngSwitch]="feedback">
+    <p *ngSwitchCase="'good'">Good</p>
+    <p *ngSwitchCase="'verygood'">Very Good</p>
+    <p *ngSwitchCase="'bad'">Bad</p>
+    <p *ngSwitchDefault>Your input is not matching</p>
+  </div>
 
+  <!--Switch case with ng-template-->
+  <div [ngSwitch]="feedback">
+    <ng-template [ngSwitchCase]="'good'">
+      <h3>Good</h3>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'verygood'">
+      <h3>Very Good</h3>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'bad'">
+      <h3>bad</h3>
+    </ng-template>
+    <ng-template ngSwitchDefault>
+      <h3>Your input is not matching</h3>
+    </ng-template>
+  </div>
  </div>
