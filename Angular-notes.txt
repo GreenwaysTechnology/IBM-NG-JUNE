@@ -1202,7 +1202,170 @@ switch....case:
   </div>
 
 
-3.Attribute directive
+3.Attribute directive :
+
+ Adding extra behaviour to existing dom elements.
+
+eg:
+ <div subu="">
+
+How to create our own attribute directive.
+
+steps
+
+1.declare directive class and decorate
+
+import { Directive } from '@angular/core';
+
+@Directive({
+    selector : '[appHighlight]'
+})
+export class  HighLightDirective{
+    
+}
+
+2.Test directive is working or not
+
+    <h2 appHighlight >High light me</h2>
+
+DOM Maniupulation:
+
+Access Object , change its values
+
+ h2------Object---->change its value
+
+Using js you change it.
+
+ var element = document.getElementByid('xxx')
+
+
+DOM ACCESS INSIDE ANGULAR;
+
+1.INSIDE Directive
+  using "ElementRef" -Object
+
+this.element.nativeElement.style.backgroundColor = "yellow";
+
+Component(Directive) Life Cycle methods:
+
+Component initalization from scrach
+
+-->behind the scene (angular di system)
+ 
+ declartions:[HighLightDirective]--di reads this
+		-->di starts creating object
+			new HighLightDirective()--constructor runs
+ Objective of constructor is to create object only.
+
+After constructor completes 
+   Object is ready.
+
+After that we can do heavy resource intialization tasks.
+  -Ajax calls
+  -web socket calls
+  -Timers 
+  -side effects 
+
+dont write code inside constructors, but it works, this might delay object creations.
+
+Why constructors:
+
+  -Only for dependency grabbing.
+
+
+where we have to write resource intialization tasks.
+
+inside lifecycle methods
+
+->all life cycle methods availbale inside interfaces.
+
+********************************************************************************************
+
+Dynamic highlights : Javascript Event Handling :
+
+import { Directive, ElementRef, HostListener,Input} from '@angular/core';
+
+
+app.highlight.directive.ts
+
+@Directive({
+    selector : '[appHighlight]'
+})
+export class  HighLightDirective{ // implements OnInit{
+
+    @Input()
+    highlightColor: string;
+
+    //element will point on which dom element this directive attached
+    constructor(private element:ElementRef){}
+    ngOnInit(){
+        this.highlight(this.highlightColor)
+    }
+
+    //listeners: native listners
+    @HostListener('mouseenter')
+    public onMouseMove(){
+        this.highlight('green')
+
+    }
+    @HostListener('mouseleave')
+    public onMouseOut(){
+        this.highlight('pink')
+
+    }
+    private highlight(color: string) {
+        this.element.nativeElement.style.backgroundColor = color;
+    }
+      
+}
+
+app.component.html
+<div class="container">
+   <h1>Attribute Directive</h1>
+   <!--Attribute directive-->
+    <h2 appHighlight [highlightColor]="color">High light me</h2>
+</div>
+
+import { Component } from '@angular/core';
+
+app.component.ts
+
+@Component({
+    selector: 'app-root',
+    templateUrl: 'app.component.html'
+})
+export class AppComponent{
+    color:string = 'red'
+}
+********************************************************************************************
+DOM Manipulation in angular patterns:
+
+1.Via $event Object.
+2.Via Attribute Directive : ElementRef,@HostListener.
+3.Template Reference Variable : #
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
 
 
 
