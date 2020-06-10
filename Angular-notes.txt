@@ -1025,5 +1025,37 @@ export class AppModule{}
 [(ngModel)] : banana in a box notation : WHich is for two way data binding shortcut.
 ............................................................................................
 
+Custom Events:
+..............
+Component - Communcation 
+ 
+1.parent - child : via property @Input
+
+2.child - parent : custom events @Output
+
+3.inter components : services and rxjs
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Child -Parent Communication:
+
+-Via Events : Custom Events:
+
+EventEmitter Object is used to communicate
+@Output
+
+We need to write two components
+
+1.Parent Component
+2.Child Component
+
+
+
+
+
+
+
+
+
 
 
