@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent{
     color:string = 'red'
+    firstname:string ='Default'
+
+    public setName(name:string){
+       this.firstname = name;
+    }
 }
