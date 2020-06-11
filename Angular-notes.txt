@@ -2128,6 +2128,81 @@ data processing operators:
 3.take
 etc.....
 
+*******************************************************************************************
+HttpProgramming
+
+import { HttpClientModule } from '@angular/common/http';
+
+Http service built in object
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+SPA:
+
+Routing Basics
+..............
+Master routing -main 
+Nested routing -sub menu
+
+routingmodule
+ -master
+ -module specific routing.
+
+
+Route module
+
+Route configuration
+
+Route module injection
+
+****************************************
+Objects
+1.RouterOutLet
+   -place components
+2.Router
+3.Activated Route
+4.Location Object
+**********************************************************************
+
+urls:
+
+    
+ '' -home
+
+ 'name' - named url
+ 'dynamic:id' -dynamic router
+  '**' - no match found
+
+Route config
+
+  const routconfig:Routes= [{
+},{
+
+}]
+  
+root
+redirect /xxx ---
+*******************************************************************************************
+
+Data Transfer during navigation:
+
+ data
+
+****************************************************************************************
+
+rxjs implementation:
+ 
+1.HTTP calls
+2.Routers - Observable
+
+ActivatedRoute:
+
+
+
+
+
+
+
 
 
 

@@ -1,22 +1,20 @@
-import { NgModule } from '@angular/core';
-//import { AppComponent ,ParentComponent,ChildComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProfileComponent } from './profile.component';
-import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {HighLightDirective} from './directives/app.highlight.directive';
-import {DecimalFractionPipe} from './pipes/app.decimalfraction';
-
+import { GreeterModule } from './greeter/greeter.module';
+import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  //di list: ng wil lookup this list , and create objects and link accordingly
-  //declarations:[AppComponent,ProfileComponent,ParentComponent,ChildComponent],
-  declarations : [AppComponent,HighLightDirective,DecimalFractionPipe],
-  imports : [BrowserModule ,FormsModule],
+  declarations: [
+    AppComponent ],
+  imports: [
+    BrowserModule,
+    GreeterModule,
+    HttpClientModule
+  ],
   providers: [],
-  ///entry point
   bootstrap: [AppComponent]
-
 })
-export class AppModule{}
+export class AppModule { }

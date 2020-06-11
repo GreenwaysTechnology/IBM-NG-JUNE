@@ -1,22 +1,63 @@
 import { Component } from '@angular/core';
-import { PostType } from './types/post.type';
-import { PostFormModel } from './formmodels/post.form.model';
-
-
+import { UserService } from './services/user.service';
 
 @Component({
-    selector:'app-root',
-    templateUrl :'app.component.html'
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent{
- post:any
- submitted: boolean = false;
- categories:Array<string> = ["User interface","MicroServices","Devops"];
-   constructor(){
-    this.post = new PostFormModel(Math.random(), 'Learn Angular', 'Misko',this.categories[0]);
-  }
-  onSubmit(){
-    console.log(this.post);
-    this.submitted = true;
-  }
+export class AppComponent {
+  title = 'Services:Observable';
+  users:Array<any>;
+  user:any;
+  photos:any[];
+
+   constructor(private service:UserService){  }
+   ngOnInit(){
+
+    this.service.filterUsers(3).subscribe(
+      data=>{
+         this.user = data;
+         console.log(this.user)
+      },
+      err=>{
+         console.log(err)
+      },
+      ()=>{
+        console.log('Stream is completed')
+      }
+    );
+
+    this.service.findAll().subscribe(
+      data=>{
+         this.users = data;
+      },
+      err=>{
+         console.log(err)
+      },
+      ()=>{
+        console.log('Stream is completed')
+      }
+    );
+    //photo service
+    this.service.fetchPhotos().subscribe(
+      data=>{
+         this.photos = data;
+         console.log(this.photos)
+      },
+      err=>{
+         console.log(err)
+      },
+      ()=>{
+        console.log('Stream is completed')
+      }
+    );
+
+
+
+   }
+
+
+
+
 }
