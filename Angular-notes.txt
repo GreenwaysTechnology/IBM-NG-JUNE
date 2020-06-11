@@ -1769,6 +1769,284 @@ class NgModle extends Input{
        <div [hidden]="errorMsg2.valid || errorMsg2.pristine" class="alert alert-danger">
          Author is required
        </div>
+*******************************************************************************************
+
+Disabling submit button in case any validation fails:
+
+  <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
+
+*******************************************************************************************
+Select control and how to populate data.
+
+
+<div class="container">
+   <h1>Form Application : Post Registration Form</h1>
+   <div [hidden]="submitted">
+    <form #postForm="ngForm" (ngSubmit)="onSubmit()">
+       <!--TODO: Remove this once testing over-->
+       <pre>{{post | json}}</pre>
+      <div class="form-group">
+         <label for="title">Title</label>
+         <input [(ngModel)]="post.title" name="title" #errorMsg1="ngModel" type="text" class="form-control" id="title" required>
+       </div>
+       <div [hidden]="errorMsg1.valid || errorMsg1.pristine" class="alert alert-danger">
+         title is required
+       </div>
+       <div class="form-group">
+         <label for="name">Name</label>
+         <input [(ngModel)]="post.author"  #errorMsg2="ngModel" name="author" type="text" class="form-control" id="name" required>
+       </div>
+       <div [hidden]="errorMsg2.valid || errorMsg2.pristine" class="alert alert-danger">
+         Author is required
+       </div>
+
+       <div class="form-group">
+         <label for="category">Category</label>
+         <select class="form-control" id="category" name="category" 
+         required [(ngModel)]="post.category">
+           <option *ngFor="let cat of categories"  [value]="cat">
+             {{cat}}
+           </option>
+         </select>
+       </div>
+
+       <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>    </form>
+    </div>
+<!--Details Page-->
+<div class="container" [hidden]="!submitted">
+   <h2>You submitted the following:</h2>
+   <div class="row">
+     <div class="col-xs-3">Id : </div>
+     <div class="col-xs-9  pull-left">{{ post.id }}</div>
+   </div>
+   <div class="row">
+     <div class="col-xs-3">Title : </div>
+     <div class="col-xs-9  pull-left">{{ post.title }}</div>
+   </div>
+   <div class="row">
+     <div class="col-xs-3">Author : </div>
+     <div class="col-xs-9 pull-left">{{ post.author }}</div>
+   </div>
+   <div class="row">
+      <div class="col-xs-3">Category : </div>
+      <div class="col-xs-9 pull-left">{{ post.category }}</div>
+    </div>
+   <br>
+   <button class="btn btn-primary" (click)="submitted=false">GoBack</button>
+ </div>
+    
+
+</div>
+
+import { Component } from '@angular/core';
+import { PostType } from './types/post.type';
+import { PostFormModel } from './formmodels/post.form.model';
+
+
+
+@Component({
+    selector:'app-root',
+    templateUrl :'app.component.html'
+})
+export class AppComponent{
+ post:any
+ submitted: boolean = false;
+ categories:Array<string> = ["User interface","MicroServices","Devops"];
+   constructor(){
+    this.post = new PostFormModel(Math.random(), 'Learn Angular', 'Misko',this.categories[0]);
+  }
+  onSubmit(){
+    console.log(this.post);
+    this.submitted = true;
+  }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+Angular and Modularity:
+.......................
+
+Moduarity is breaking application into small parts.
+
+Types of modularity:
+
+1.physical  modularity
+  -folders and files
+
+  app
+    |
+    folder1
+       |
+       files
+
+basic standards
+
+  app
+   |
+   products
+      |
+      files
+   customers
+     |
+     files
+  common/utitles
+    
+   mockdata
+   
+types of files
+   -component/service/pipes/directives --- app.component.ts
+   -module file -  app.module.ts, product.module.ts
+   -testing files- app.component.spec.ts
+   -html files - templates
+   -css files
+
+component
+  compoent file
+  spec
+  testing
+  html
+  css
+
+How it is achived using es 6 modules - export,import,export default.
+
+**************
+Logical Modularity
+  
+During runtime
+It is angularity modularity.
+Object Organization
+   
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Rules :
+
+1.Every NG Application must have one single Module Object - Container/Application
+  it is specificied in a file called app.module.ts - 
+
+2.Application can contain submodules and it may contain its submodules like so....
+
+3.Any Submodule, must be linked in main module, so that submodules objects will created.
+  similary sub-child modules must be linked its parent modules
+ linking is done through ; imports
+
+4.Any Object (cmp,directive,pipe,service) is created with in that module wont available outside  that module including submodules
+   -Private to that modules.
+  if want to access outside we have configuration.
+
+	
+5.app folder must contain only appcomponent , which is entry point to your application
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+Use case 1: 
+
+1.create folder 
+
+2.create simple component
+
+3.di
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { GreeterComponent } from './greeter/greeter.component';
+
+@NgModule({
+  declarations: [
+    AppComponent ,GreeterComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+import { Component } from '@angular/core';
+
+
+@Component({
+    selector: 'app-greeter',
+    templateUrl: 'greeter.component.html'
+})
+export class GreeterComponent{
+
+}
+
+above code, we have injected inside app module.
+this is good practice, then ,
+...........................................................................................
+
+Create Sub Module:
+
+greeter.module.ts
+
+
+import { NgModule } from '@angular/core';
+import { GreeterComponent } from './greeter.component';
+
+
+@NgModule({
+    declarations:[GreeterComponent],
+    imports:[],
+    providers:[],
+    exports:[GreeterComponent] //list of things will be available outside this module
+})
+export class GreeterModule{
+
+}
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import {GreeterModule} from './greeter/greeter.module';
+
+@NgModule({
+  declarations: [
+    AppComponent ],
+  imports: [
+    BrowserModule,GreeterModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
