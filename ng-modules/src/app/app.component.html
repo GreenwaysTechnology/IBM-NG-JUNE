@@ -1,4 +1,21 @@
 <div class="container">
   <h1>Modular Applications</h1>
   <app-greeter></app-greeter>
+  <h1>Users list from Observable</h1>
+  <ul>
+    <li *ngFor="let user of users">
+       <span>{{user.name}}</span>
+    </li>
+  </ul>
+  <h1>Filtered User</h1>
+  <h2>{{user.username}}</h2>
+  <hr>
+  <div *ngFor="let photo of photos" class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="photo.thumbnailUrl" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{photo.title}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
 </div>

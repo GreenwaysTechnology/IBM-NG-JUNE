@@ -2015,23 +2015,118 @@ import {GreeterModule} from './greeter/greeter.module';
 })
 export class AppModule { }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+Major tasks:
+
+1.create folder -one time
+2.create files
+3.declare classes,
+4.dependency injection
 
 
+How to automate create folder,files,declare class,di?
+
+ angular cli tool
+
+How to use Angular cli?
+
+create a folder and module
+...............................
+
+>ng g m header
+CREATE src/app/header/header.module.spec.ts (275 bytes)
+CREATE src/app/header/header.module.ts (190 bytes)
 
 
+create module and updates app module
+.....................................
+
+>ng g m header --module=app
+CREATE src/app/header/header.module.spec.ts (275 bytes)
+CREATE src/app/header/header.module.ts (190 bytes)
+UPDATE src/app/app.module.ts (389 bytes)
+
+create Component , inside greeter folder, we need to inject greeter module into app
+
+$>ng g c greeter --module=greeter --export=true  --inlineStyle=true   --skipTests=true
+
+********************************************************************************************
+
+Services;
+
+object having biz apis
 
 
+Types of services;
+
+Based on biz function
+
+1.sync -block
+2.async - non blocking
+ 
+async 
+ -callbacks -traditional
+ -Promise-
+ -Rxjs - async reactive implementation
+
+reactive
+ -observables design pattern - Producer ---Subscriber
+ -Iterator design pattern  -pull based
+ -functional programming -pure functions
+
+Angular uses rxjs 
+
+ -http calls
+ -data observables
 
 
+Rxjs Provides an Objects:
 
+1.Observable
+  -create stream
+  subscribe-- to read data from the stream
+2.Subject
 
+Opeators ;
 
+- api methods :  pure functions
 
+-map,filter,flatmap...
+-tap
+  
+****************************************************************************************
 
+rxjs---typescript
 
+typescript uses type definition(file.d.ts) - index.d.ts
+
+ js--defition--ts
+
+Angular rxfication : 
+ RXJS---added type defintion---added wrappers.
+*******************************************************************************************
+
+@Injectable - is used to decorator
+
+providers :[ServiceName]
+
+@Injectable({
+providerIn : 'root'
+})
    
+/////////////////////
 
+of
+from
+fromEvent
 
+data processing operators:
+
+1.map
+2.fitler
+3.take
+etc.....
 
 
 
