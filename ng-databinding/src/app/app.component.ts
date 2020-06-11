@@ -1,39 +1,22 @@
 import { Component } from '@angular/core';
+import { PostType } from './types/post.type';
+import { PostFormModel } from './formmodels/post.form.model';
 
 
 
 @Component({
-    selector :'app-root',
-    templateUrl: 'app.component.html'
+    selector:'app-root',
+    templateUrl :'app.component.html'
 })
 export class AppComponent{
-
-    //date data
-    today:any = new Date();
-    someDay:any = new Date(1999,6,10);
-
-    //currency data
-    stockValue:number =100.7863;
-
-    //strings
-    name:string = 'subramanian';
-
-    //User object
-    user:any= {
-        "id": 1,
-        "name": "Leanne Graham",
-        "username": "Bret",
-        "email": "Sincere@april.biz",
-        "address": {
-          "street": "Kulas Light",
-          "suite": "Apt. 556",
-          "city": "Gwenborough",
-          "zipcode": "92998-3874",
-          "geo": {
-            "lat": "-37.3159",
-            "lng": "81.1496"
-          }
-        }
-    };
-
+ post:any
+ submitted: boolean = false;
+ categories:Array<string> = ["User interface","MicroServices","Devops"];
+   constructor(){
+    this.post = new PostFormModel(Math.random(), 'Learn Angular', 'Misko',this.categories[0]);
+  }
+  onSubmit(){
+    console.log(this.post);
+    this.submitted = true;
+  }
 }

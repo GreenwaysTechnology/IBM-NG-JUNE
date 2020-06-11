@@ -1551,40 +1551,224 @@ Ajax : HTTP Programmng
 
 Single Page Application : using Routers
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+Forms:
+
+-Template driven forms.
+
+Form data binding
+Form validation
+
+Steps:
+
+1.inject - Template driven forms which is from 'FormsModule'
+
+import {FormsModule} from '@angular/forms';
 
 
+@NgModule({
+   imports : [BrowserModule ,FormsModule],
+ })
+export class AppModule{}
 
 
+2.Create Model class
+export class PostFormModel{
+    constructor(public id: number, public title: string, public author: string){
+    }
+}
+
+3.create Object for those domain models
+
+export class AppComponent {
+  post: any;
+  constructor() {
+    this.post = new PostFormModel(Math.random(), 'Learn Angular', 'Misko')
+  }
+}
+
+Step 3 : 
+Create inital form Template
+<div class="container">
+  <h1>Post Form</h1>
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>
 
 
+Step 4:
+
+Data binding
+   Binding textbox(form controls) with Model Object
+   We have many ways
+  1.through instance variable,$event
+  2.through [(ngModel)]="post.title"
+   ngModel = > it is an object from "FormsModule"
+   ngModel it is dto object=>data transfering between view and component.
+
+//
+Form Control value property is bound with name property of input control.
+
+<input [(ngModel)]="post.title" name="title" type="text" class="form-control" id="title" required>
+
+    <form>
+       <!--TODO: Remove this once testing over-->
+       <pre>{{post | json}}</pre>
+      <div class="form-group">
+         <label for="title">Title</label>
+         <input [(ngModel)]="post.title" name="title" type="text" class="form-control" id="title" required>
+       </div>
+       <div class="form-group">
+         <label for="name">Name</label>
+         <input [(ngModel)]="post.author" name="author" type="text" class="form-control" id="name" required>
+       </div>
+   
+       <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+*****************************************************************************************
+NgForm : 
+ It is object representation of "form" element.
+ Can be used to control form validations.
+ in order to access the NgForm object inside template. You have to use template reference
+
+<form #postForm> =>postForm points HTMLForm Object
+
+ngForm is Object which inherits HTMLForm
+
+class ngForm extends HTMLForm{
+  +extra behavior=>Ready made validation code
+  +form submission behviours
+}
 
 
+What is meaning of this code <form #postForm>?
+
+ HTMLFORMobject ----postPorm
+
+dummy code for the above template
+ let postForm =  new HTMLForm();
+
+what we need
+ let postForm = new NgForm()
+
+<form #postForm="ngForm"> 
 
 
+The variable postForm is now a reference to the NgForm 
+directive that governs the form as a whole.
+
+The NgForm directive:
+
+What NgForm directive? You didn't add an NgForm directive.
+
+Angular did. Angular automatically creates and attaches
+ an NgForm directive to the <form> tag.
+
+"The NgForm directive supplements the form element with additional features. 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+It holds the controls you created for the elements  with an "ngModel directive" and name attribute,
+ and monitors their properties, including their validity.
  
+It also has its own valid property which is true only if every contained control is valid."
+
+Note: NgForm is built Object ,has more logic for simlifying our form handling process.
+
+********************************************************************************************
+NgModel :
+
+ 1.Transfering data between UI and Controller .
+
+NgModel not only for data transfer, which does so many other things beyond twoway data binding.
+
+Track control(form element) state and validity with ngModel:
+.............................................
+
+Form element states:
+
+State 	                         Class if true 	  Class if false
+The control has been visited.  	  ng-touched 	    ng-untouched
+The control's value has changed.  ng-dirty 	    ng-pristine
+The control's value is valid. 	  ng-valid 	    ng-invalid
+
+Anguar provides built-in css styles for forms
+ eg:
+  ng-touched
+   ......
+
+State Tracking Steps:
+
+1.Look but don't touch.
+2.Click inside the name box, then click outside it.
+3.Add slashes to the end of the name.
+4.Erase the name.
+
+ng-untouched - if you dont touch
+ng-touched - if you touch
+ng-dirty - if you changed
+ng-invalid - if you remove all-empty field.
 
 
+Add custom CSS for visual feedback:
 
+Valid + Required - green Color
+Valid + optional - white color
+Invalid (required | optional) - red Color
 
+Angular Css:
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
 
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+****************************************************************************************
 
+Adding validation block to our code:
+...................................
 
+NgModel is Child Object of FormControl Object
 
+class  Input{
+ 
+}
+class NgModle extends Input{
+  //extra features : state tracking,enabling validation.
+}
+
+<input #Xx> -Here xxPoints only Input
+
+<input #Xx="ngModel"> -Here xx points ngModel
+
+ <div class="form-group">
+         <label for="title">Title</label>
+         <input [(ngModel)]="post.title" name="title" #errorMsg1="ngModel" type="text" class="form-control" id="title" required>
+       </div>
+       <div [hidden]="errorMsg1.valid || errorMsg1.pristine" class="alert alert-danger">
+         title is required
+       </div>
+       <div class="form-group">
+         <label for="name">Name</label>
+         <input [(ngModel)]="post.author"  #errorMsg2="ngModel" name="author" type="text" class="form-control" id="name" required>
+       </div>
+       <div [hidden]="errorMsg2.valid || errorMsg2.pristine" class="alert alert-danger">
+         Author is required
+       </div>
 
 
 
