@@ -1519,6 +1519,41 @@ import {DecimalFractionPipe} from './pipes/app.decimalfraction';
 })
 export class AppModule{}
 
+**********************************************************************************************
+
+Task: 
+  I want to display list of products
+   id,name,category,price,qty
+
+You have to display data in tables : Grid View
+
+ -------------------------------------------------------------------------------------------
+   id     name    category qty price Sort : asc and dec : on Name al
+ ------------------------------------------------------------------------------------------
+
+1.You have to create custom pipe for sorting.
+
+**********************************************************************************************
+
+Forms
+ ->Template Driven Forms
+ ->Reactive Forms
+
+Modular Applications
+
+ -submodules
+ -di
+
+Services and Reactive Programming : rx js
+
+
+Ajax : HTTP Programmng
+
+Single Page Application : using Routers
+
+
+
+
 
 
 
