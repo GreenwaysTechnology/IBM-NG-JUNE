@@ -2196,12 +2196,68 @@ rxjs implementation:
 2.Routers - Observable
 
 ActivatedRoute:
+**********************************************************************************************
+js app dev
+  finally build  javascript  : bundle.js --->Break the bundle into smaller units
+   app.bundle.js,styles.bundle.js,.....
+
+lazy loading:
+
+http://www.example.com <------------->bundle.js
+
+---------------------------------------------------------------------------------------
+ Home  contactus admin ................
+----------------------------------------------------------------------------------------
+***********************************************************************************
+**********************
 
 
+download js files on demand : this is called lazy loading. 
 
+how to enable lazy loading :
+ ->modular routing.
+******************************************************************************************
 
+ngOnInit -called , when component is mounted /initalized
+  -page initalization we have done
 
+ngOnDestroy - called when component is removed from the current flow. 
+  -write some clean up activities
 
+ let subscription = this.service.findAll()
+
+ subscription.unsub();
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Case Study :
+
+Create simple Profile Management application
+
+menu
+
+ 0.Home
+   Display list of profiles already
+
+ 1.new Profile
+     id,name,city
+ when i click profile link
+ show profile form
+ get input, add validation...
+ submit
+   profile information should be passed to................>service ,Profile Service
+  save -get profile object and save
+      
+  list ----
+
+ 2.list Profile
+
+   -->load profiles  into screen in tabular form
+  --------------------------------------------------------------------------------------
+   id   name   city - view
+ ---------------------------------------------------------------------------------------
+  Use router to navigate to the next page display profies in card view.
+
+ list profile must be in a seprate routing module : profile.routing.ts
 
 
 
