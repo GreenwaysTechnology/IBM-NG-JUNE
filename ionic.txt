@@ -1,0 +1,164 @@
+browser based web application
+
+native 
+
+portable mobile application / one app for all devices
+
+
+Hybrid  : based on existing web standards
+ -HTML 5,Js,css3
+
+ app like expreinces.
+
+inonic for hybrid mobile apps.
+
+mobile app
+
+ 1.UI
+ 2.BIZ Logic
+ 3.device features - camera,storage,gps - native services
+
+Hybrid
+  ui - html 5,css3
+  biz  -javascript 
+  native -js -------cordova : open source javascript wrapper to access mobile native services
+
+                        HybridApp  -Ionic -|----Angular
+			    |
+		      --------------                   
+                        WebView
+                           |
+                        bridge -cordova (c)  
+                      ---------------
+                            |
+                        Mobile OS
+
+cordova -----Adboe ----->phone gap
+
+cordova----capcitor --framework -- enterprise.
+
+Angular+ inonic + capacitor /cordova
+
+
+
+UI Components
+ Ionic Components are built with web standards using HTML, CSS, and JavaScript. 
+
+Though the components are pre-built, they're designed from the ground up to be highly customizable so apps can make each component their own, allowing each app to have its own look and feel. More specifically, Ionic components can be easily themed to globally change appearance across an entire app
+
+ion-input
+
+
+Theming
+At the core, Ionic Framework is built using CSS which allows us to take advantage of the flexibility that CSS properties (variables) provide. 
+
+
+Adaptive Styling
+Adaptive Styling is a built-in feature of Ionic Framework which allows app developers to use the same code base for multiple platforms. Every Ionic component adapts its look to the platform on which the app is running on. For example, Apple devices, such as the iPhone and iPad, 
+ use Apple's own iOS design language. Similarly, Android devices use Google's design language called Material Design.
+
+
+Navigation
+
+Traditional web apps use a linear history, meaning that the user navigates forward to a page and can hit the back button to navigate back. An example of this is clicking around Wikipedia where the user is going forward and backward on the browser's linear history stack.
+
+In contrast, mobile apps often utilize parallel, "non-linear" navigation. For example, a tabbed interface can have separate navigation stacks for each tab, making sure the user never loses their place as they navigate and switch between tabs.
+
+Ionic apps embrace this mobile navigation approach, supporting parallel navigation histories that can also be nested, all while maintaining the familiar browser-style navigation concepts web developers are familiar with
+
+
+Native Access
+An amazing feature of apps built with web technologies (such as Ionic apps!) is that it can run on virtually any platform: desktop computers, phones, tablets, cars, refrigerators, and more! The same code base for Ionic apps can work on many platforms because it is based on web standards and common APIs that are shared across these platforms.
+
+
+Cross Platform
+
+Ionic is built from the ground up to make development easy, no matter what platform you are building for. Ionic apps are truly cross-platform: able to run as an Android, iOS, Electron, and Progressive Web App (PWA), all from a single codebase
+
+Hardware APIs:
+In a native application, it's common to make API calls to communicate with the device, such as opening the camera or accessing geolocation. These API calls won’t work when called in a web environment because there’s no native bridge. There are a few ways Ionic handles this
+
+
+this.platform.ready().then(() => {
+  // 'hybrid' detects both Cordova and Capacitor
+  if (this.platform.is('hybrid')) {
+    // make your native API calls
+  } else {
+    // fallback to browser APIs
+  }
+});
+
+Storage :
+
+Most apps at some point will need to store some sort of data locally. Whether it’s storing some JSON from an XHR request, or saving an auth token, there are many different storage options available. On top of this, if the app is running in a native environment, it is possible to create a full SQLite database and store data there. All of these different storage mechanisms have their own advantages and disadvantages, but Ionic developers should not have to worry about that.
+
+Ionic Storage
+In this case, Ionic’s Storage library is a perfect candidate for the multi-environment use case. Built on top of the well tested LocalForage library, Ionic’s storage class provides an adaptable storage mechanism that will pick the best storage solution for the current run time.
+
+Currently this means it will run through SQLite for native, IndexedDB (if available), WebSql, or Local Storage. By handling all of this, it allows writing to storage using a stable API.
+
+
+
+
+class MyClass {
+  constructor(public storage: Storage) {}
+
+  async setData(key, value) {
+    const res = await this.storage.set(key, value);
+    console.log(res);
+  }
+
+  async getData(key) {
+    const keyVal = await this.storage.get(key);
+    console.log('Key is', keyVal);
+  }
+}
+
+Web View
+
+Web Views power web apps on native devices.
+
+The Web View is automatically provided for apps integrated with Capacitor.
+
+For Cordova, Ionic maintains a Web View plugin. The plugin is provided by default when using the Ionic CLI.
+
+What is a Web View?
+Ionic apps are built using web technologies and are rendered using Web Views, which are a full screen and full-powered web browser.
+
+Modern Web Views offer many built-in HTML5 APIs for hardware functionality such as cameras, sensors, GPS, speakers, and Bluetooth, but sometimes it may also be necessary to access platform-specific hardware APIs. In Ionic apps, hardware APIs can be accessed through a bridge layer, typically by using native plugins which expose JavaScript APIs.
+*****
+
+
+npm install -g @ionic/cli
+
+Start an App
+
+The three most common starters are the blank starter, tabs starter, and sidemenu starter. Get started with the ionic start command:
+
+ionic start myApp tabs
+///////////////////////////////////////////////////////////////////////////////////////
+
+Deployment:
+
+1.andorid studio
+2.andorid sdk.
+
+
+ng build
+
+ionic capacitor add android  -- add capacitor dependencies into project
+
+ionic capacitor copy android - copy all plugins to andorid deployment folder
+
+ionic capacitor run android 
+
+ionic capacitor run andorid -l
+
+
+
+
+
+
+
+
+
